@@ -1,0 +1,41 @@
+public class Lab9 {
+
+  
+
+    public static String generateSubsets(int[] nums, int index, String current) 
+{
+        if (index == nums.length) 
+	{
+            return "{" + current .trim() + "} ,";
+        }
+
+        String kume= generateSubsets(nums, index+1, current + nums[index] + " ");
+
+        String altkume= generateSubsets(nums, index+1, current);
+
+        return kume+altkume;
+    }
+	 
+	public static String generatePermutations(String input, String current) 
+{
+    if (input.isEmpty()) 
+    {
+        return current + ", ";
+    }
+
+    String result = "";
+
+    for (int i= 0; i< input.length();i++) 
+    {
+        
+        char karakter = input.charAt(i);
+
+        String remaining = input.substring(0, i) + input.substring(i + 1);
+        result += generatePermutations(remaining, current + karakter);
+    }
+
+    return result;
+}
+
+
+}

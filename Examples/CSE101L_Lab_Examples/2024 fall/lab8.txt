@@ -1,0 +1,87 @@
+mport java.util.Arrays;
+import java.util.List;
+
+public class Lab{
+    
+    public static String factorial(int n) {
+        String resultString = "";
+        int result = 1;
+        
+        if (n < 0) {
+            return "Undefined";
+        }
+
+       
+        if (n == 0 || n == 1) {
+            return "1";
+        }
+
+        
+    
+
+      
+        for (int i = 1; i <= n; i++) {
+            result *= i;
+            resultString += i;
+
+           
+            if (i != n) {
+                resultString += " * ";
+            }
+        }
+
+      
+        resultString += " = " + result;
+
+        return resultString;
+    }
+    
+      public static int maximumProduct(int[] nums) {
+
+        Arrays.sort(nums);
+    
+     
+        int lenght = nums.length;
+  
+        int product1 = nums[lenght-1] * nums[lenght-2] * nums[lenght-3]; 
+        int product2 = nums[0] * nums[1] * nums[lenght-1];      
+        
+ if(product1>product2)
+ {
+     return product1;
+     
+ }
+ else
+ {
+     return product2;
+     
+ }
+ 
+    }
+    
+  
+   public static String[] saleCar(String[] carModels, String carToSell) {
+        carToSell = carToSell.toLowerCase();
+        int count = 0;
+        
+        for (String car : carModels) {
+            if (!car.toLowerCase().equals(carToSell)) {
+                count++;
+            }
+        }
+
+        String[] remainingModels = new String[count];
+        int index = 0;
+
+        for (String car : carModels) {
+            if (!car.toLowerCase().equals(carToSell)) {
+                remainingModels[index] = car;
+                index++;
+            }
+        }
+
+        return remainingModels;
+    }
+
+   
+  }

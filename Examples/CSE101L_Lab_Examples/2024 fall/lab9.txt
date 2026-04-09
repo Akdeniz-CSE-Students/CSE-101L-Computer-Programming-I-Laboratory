@@ -1,0 +1,102 @@
+public class Lab8 {
+
+    public static int size(int[][] matrix1, int[][] matrix2) {
+        
+        int sutun= matrix2[0].length;
+        
+        int satir= matrix1.length; 
+       
+        
+        int solution =sutun * satir;
+        
+        return solution;
+    }
+
+    public static int[][] multiply(int[][] matrix1, int[][] matrix2) {
+        
+        int satir1= matrix1.length;
+        
+        int sutun1= matrix1[0].length;
+        
+        int sutun2= matrix2[0].length;
+        
+        int[][]sonuc= new int[satir1][sutun2];
+
+        for (int i = 0; i < satir1; i++) {
+            for (int j = 0; j < sutun2; j++) {
+                for (int k = 0; k < sutun1; k++) {
+                    sonuc[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+            }
+        }
+
+        return sonuc;
+    }
+
+    public static boolean isPerfect(int num) {
+        if (num <= 1) {
+            return false;
+        }
+
+        int toplam = 0;
+
+        for (int i = 1; i <= num / 2; i++) {
+            if (num % i == 0) {
+                toplam += i;
+            }
+        }
+
+        return toplam== num;
+    }
+
+    public static String findPerfectNumbers(int n) 
+    {
+        if (n <= 0) 
+        {
+            return "";
+        }
+        
+        int sayi= 1; 
+        String sonuc = ""; 
+        int toplam= 0;  
+        
+        while (toplam < n) 
+        {
+            if (isPerfect(sayi))
+            {
+                sonuc += sayi + " "; 
+                
+                toplam++;
+            }
+            sayi++;
+        }
+
+        return sonuc;
+    }
+
+    public static boolean isToeplitzMatrix(int[][] matrix) 
+    {
+        if (matrix==null || matrix.length==0 || matrix[0].length==0) 
+        {
+            return true;
+        }
+
+        int satir = matrix.length;
+        
+        int sutun = matrix[0].length;
+
+        for (int i= 0; i<satir -1; i++) 
+        {
+            for (int j= 0; j<sutun -1; j++)
+            {
+                if (matrix[i][j]!=matrix[i + 1][j + 1]) 
+                {
+                   
+                    return false; 
+                }
+            }
+        }
+
+        return true; 
+    }
+}

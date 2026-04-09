@@ -1,0 +1,32 @@
+package midterm;
+import java.util.Scanner;
+public class asal {
+
+	public static void main(String[] args) 
+	{
+		boolean asal=true;
+		Scanner input=new Scanner(System.in);
+		System.out.println("welcome please enter a number:");
+		int number=input.nextInt();
+	if(number<2) System.out.println("Wrong number has been entered");
+	
+	for(int i=2;i<number;i++)
+	{
+		if(number%i==0)
+		{
+			asal=false;
+		
+			break;
+		}
+		
+	}
+
+	if(asal)
+	{
+		System.out.println("Number "+ number+ "  asal");
+	}
+	else
+		System.out.println("Number is not asal");
+	}
+
+}

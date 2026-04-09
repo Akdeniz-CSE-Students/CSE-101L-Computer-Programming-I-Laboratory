@@ -1,0 +1,148 @@
+public class HumanReadableTime {
+    public static String makeReadable(int seconds) {
+        
+        int hours = seconds / 3600;
+        seconds %= 3600;
+        int minutes = seconds / 60;
+        seconds %= 60;
+
+      
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+}
+
+
+public class PrimeFactorDecomposition {
+    public static String decompose(int n) {
+        String result = "";
+        int count;
+
+     
+        count = 0;
+        while (n % 2 == 0) {
+            n /= 2;
+            count++;
+        }
+        if (count > 0) {
+            result += "(2";
+            if (count > 1) {
+                result += "**" + count;
+            }
+            result += ")";
+        }
+
+     
+        for (int i = 3; i <= Math.sqrt(n); i += 2) {
+            count = 0;
+            while (n % i == 0) {
+                n /= i;
+                count++;
+            }
+            if (count > 0) {
+                result += "(" + i;
+                if (count > 1) {
+                    result += "**" + count;
+                }
+                result += ")";
+            }
+        }
+
+       
+        if (n > 2) {
+            result += "(" + n + ")";
+        }
+
+        return result;
+
+    }
+}
+
+
+
+
+
+public class RailFenceCipher {
+
+    public static String encode(String text, int rails) {
+        if (text == null || text.isEmpty() || rails < 2) {
+            return text;
+        }
+
+        String[] railStrings = new String[rails];
+        for (int i = 0; i < rails; i++) {
+            railStrings[i] = ""; 
+        }
+
+        int rail = 0; 
+        boolean goingDown = true;
+
+        for (char c : text.toCharArray()) {
+            railStrings[rail] += c;
+
+            if (rail == 0) {
+                goingDown = true;
+            } else if (rail == rails - 1) {
+                goingDown = false;
+            }
+
+            rail += goingDown ? 1 : -1;
+        }
+
+    
+        String encoded = "";
+        for (String railString : railStrings) {
+            encoded += railString;
+        }
+
+        return encoded;
+    }
+
+    public static String decode(String encodedText, int rails) {
+        if (encodedText == null || encodedText.isEmpty() || rails < 2) {
+            return encodedText;
+        }
+
+        int length = encodedText.length();
+        int[] railLengths = new int[rails];
+        char[] decoded = new char[length];
+
+       
+        int rail = 0;
+        boolean goingDown = true;
+        for (int i = 0; i < length; i++) {
+            railLengths[rail]++;
+            if (rail == 0) {
+                goingDown = true;
+            } else if (rail == rails - 1) {
+                goingDown = false;
+            }
+            rail += goingDown ? 1 : -1;
+        }
+
+    
+        int index = 0;
+        char[][] railsArray = new char[rails][];
+        for (int i = 0; i < rails; i++) {
+            railsArray[i] = encodedText.substring(index, index + railLengths[i]).toCharArray();
+            index += railLengths[i];
+        }
+
+        
+        rail = 0;
+        goingDown = true;
+        int[] railPositions = new int[rails];
+        for (int i = 0; i < length; i++) {
+            decoded[i] = railsArray[rail][railPositions[rail]++];
+            if (rail == 0) {
+                goingDown = true;
+            } else if (rail == rails - 1) {
+                goingDown = false;
+            }
+            rail += goingDown ? 1 : -1;
+        }
+
+        return new String(decoded);
+    }
+
+    
+}
